@@ -90,7 +90,7 @@ public class Ship {
     /**
      * Main class method and entry point which tests the classes
      *
-     * @param args Command line arguments (unused)
+     * @param args Command line arguments (for future use)
      *
      * @author Jason Gurtz-Cayla
      */
