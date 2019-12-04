@@ -2,3 +2,4 @@
 .gradle
 */contacts.txt*
 */build/
+*.ps
