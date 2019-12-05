@@ -23,6 +23,10 @@ public class AutoShop extends JFrame {
     private double laborTotal;
     private double partsTotal;
 
+    /**
+    * Constructor for AutoShop, instantiaing BorderLayout, its five panels, and setting base attributes
+    * @author Jason Gurtz-Cayla
+    */
     public AutoShop() {
         setTitle("Joe's Automotive Shop");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,10 +49,19 @@ public class AutoShop extends JFrame {
         setVisible(true);
     }
 
+    /**
+    * Entry point to application
+    * @author Jason Gurtz-Cayla
+    * @param args (unused) arguments given on command line
+    */
     public static void main(String[] args) {
         new AutoShop();
     }
 
+    /**
+    * Event handler for the reset button; initiates reset of application state
+    * @author Jason Gurtz-Cayla
+    */
     class ResetButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             other.resetState();
@@ -57,6 +70,10 @@ public class AutoShop extends JFrame {
         }
     }
 
+    /**
+    * Event handler for the Go! button; initiates calculation and results display of user entered data
+    * @author Jason Gurtz-Cayla
+    */
     class GoButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
@@ -75,6 +92,10 @@ public class AutoShop extends JFrame {
         }
     }
 
+    /**
+    * JPanel class displays welcome message
+    * @author Jason Gurtz-Ca
+    */
     class WelcomePanel extends JPanel {
         private JLabel welcomeText;
 
@@ -84,14 +105,22 @@ public class AutoShop extends JFrame {
         }
     }
 
+    /**
+    * JPanel class contains fields for other charges: labor hours and parts
+    * @author Jason Gurtz-Ca
+    */
     class OthChargePanel extends JPanel {
         public final double LABOR_HOURS = 110.0;
-        
+
         private JLabel laborHrs;
         private JLabel partsChrg;
         private JTextField laborHours;
         private JTextField partsCharge;
 
+        /**
+        * Constructor, setting a styled titled border and instantiating widgets
+        * @author Jason Gurtz-Cayla
+        */
         public OthChargePanel() {
             Border grayline = BorderFactory.createLineBorder(Color.gray);
             setLayout(new GridLayout(8, 1));
@@ -106,6 +135,11 @@ public class AutoShop extends JFrame {
             setBorder(BorderFactory.createTitledBorder(grayline, "Other Charges"));
         }
 
+        /**
+        * Getter method for labor hours
+        * @author Jason Gurtz-Cayla
+        * @return User-entered labor hours
+        */
         public double getLaborCost() {
             if (laborHours.getText().equals("")) {
                 return 0.0;
@@ -115,6 +149,11 @@ public class AutoShop extends JFrame {
             }
         }
 
+        /**
+        * Getter method for parts cost
+        * @author Jason Gurtz-Cayla
+        * @return User-entered cost of parts
+        */
         public double getPartsCost() {
             if (partsCharge.getText().equals("")) {
                 return 0.0;
@@ -124,11 +163,20 @@ public class AutoShop extends JFrame {
             }
         }
 
+        /**
+        * Method which resets fields in this panel to default values
+        * @author Jason Gurtz-Cayla
+        */
         public void resetState() {
             laborHours.setText("0.00");
             partsCharge.setText("0.00");
         }
     }
+
+    /**
+    * JPanel class contains fields for individual service charges
+    * @author Jason Gurtz-Ca
+    */
     class ServicesPanel extends JPanel {
         private JCheckBox oilChg;
         private JCheckBox lubeJob;
@@ -138,6 +186,10 @@ public class AutoShop extends JFrame {
         private JCheckBox muffler;
         private JCheckBox tireRot;
 
+        /**
+        * Constructor, setting a styled titled border and instantiating widgets
+        * @author Jason Gurtz-Cayla
+        */
         public ServicesPanel() {
             Border grayline = BorderFactory.createLineBorder(Color.gray);
             setLayout(new GridLayout(7, 1));
@@ -158,6 +210,10 @@ public class AutoShop extends JFrame {
             setBorder(BorderFactory.createTitledBorder(grayline, "Services"));
         }
 
+        /**
+        * Method which resets fields in this panel to default values
+        * @author Jason Gurtz-Cayla
+        */
         public void resetState() {
             oilChg.setSelected(false);
             lubeJob.setSelected(false);
@@ -168,6 +224,11 @@ public class AutoShop extends JFrame {
             tireRot.setSelected(false);
         }
 
+        /**
+        * Method which tallys the total for all services and returns tally to caller
+        * @author Jason Gurtz-Cayla
+        * @return Total cost of all services
+        */
         public double getValue() {
             double total = 0.0;
 
@@ -183,6 +244,10 @@ public class AutoShop extends JFrame {
         }
     }
 
+    /**
+    * JPanel class contains fields for displaying calculated totals
+    * @author Jason Gurtz-Ca
+    */
     class GrndTotalPanel extends JPanel {
         private JLabel svcLbl;
         private JTextField svcTot;
@@ -193,6 +258,10 @@ public class AutoShop extends JFrame {
         private JLabel grandLbl;
         private JTextField grandTot;
 
+        /**
+        * Constructor, setting a styled titled border and instantiating widgets
+        * @author Jason Gurtz-Cayla
+        */
         public GrndTotalPanel() {
             Border grayline = BorderFactory.createLineBorder(Color.gray);
             setLayout(new GridLayout(8, 1));
@@ -231,22 +300,46 @@ public class AutoShop extends JFrame {
             setBorder(BorderFactory.createTitledBorder(grayline, "Grand Total"));
         }
 
+        /**
+        * Setter for total service charges
+        * @author Jason Gurtz-Cayla
+        * @param s Total service charges
+        */
         public void setServices(String s) {
             svcTot.setText(s);
         }
 
+        /**
+        * Setter for total labor charges
+        * @author Jason Gurtz-Cayla
+        * @param l Total labor charges
+        */
         public void setLabor(String l) {
             laborTot.setText(l);
         }
 
+        /**
+        * Setter for total parts charges
+        * @author Jason Gurtz-Cayla
+        * @param p Total parts charges
+        */
         public void setParts(String p) {
             partsTot.setText(p);
         }
 
+        /**
+        * Setter for grand total of all charges
+        * @author Jason Gurtz-Cayla
+        * @param t Sum of all charges
+        */
         public void setTotal(String t) {
             grandTot.setText(t);
         }
 
+        /**
+        * Method which resets fields in this panel to default values
+        * @author Jason Gurtz-Cayla
+        */
         public void resetState() {
             svcTot.setText("0.00");
             laborTot.setText("0.00");
@@ -255,10 +348,18 @@ public class AutoShop extends JFrame {
         }
     }
 
+    /**
+    * JPanel class contains the Go! and Reset buttons
+    * @author Jason Gurtz-Ca
+    */
     class ButtonPanel extends JPanel {
         private JButton goBtn;
         private JButton rstBtn;
 
+        /**
+        * Constructor, instantiating buttons and attaching their event handlers
+        * @author Jason Gurtz-Cayla
+        */
         public ButtonPanel() {
             goBtn = new JButton("Go!");
             rstBtn = new JButton("Reset");
